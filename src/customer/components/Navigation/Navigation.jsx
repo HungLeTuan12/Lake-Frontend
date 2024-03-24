@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -7,8 +7,15 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import AuthModal from "../../auth/AuthModal";
+import { Avatar, Button, Menu, MenuItem } from "@mui/material";
+import { deepPurple } from "@mui/material/colors";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, logout } from "../../../State/Auth/Action";
+import store from "../../../State/store";
+// Logic
 const navigation = {
+  // Categories
   categories: [
     {
       id: "women",
@@ -138,18 +145,62 @@ const navigation = {
     { name: "Stores", id: "/" },
   ],
 };
-
+// Function
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-
+// Logic navigation
 export default function Navigation() {
   const [open, setOpen] = useState(false);
+  const [openAuthModal, setOpenAuthModal] = useState(false);
+  const { auth } = useSelector((store) => store);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const dispatch = useDispatch();
+  const openUserMenu = Boolean(anchorEl);
+  const jwt = localStorage.getItem("jwt");
   const navigate = useNavigate();
   const location = useLocation();
+  // Handle open
+  const handleOpen = () => {
+    setOpenAuthModal(true);
+  };
+  // Handle close
+  const handleClose = () => {
+    setOpenAuthModal(false);
+  };
+  // Handle user click
+  const handleUserClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseUserMenu = (event) => {
+    setAnchorEl(null);
+  };
+
   const handleCategoryClick = (category, section, item, onClose) => {
     navigate(`/${category.id}/${section.id}/${item.id}`);
     onClose();
+  };
+  // Get user profile
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getUser());
+    }
+  }, [jwt, auth.jwt]);
+  // Get user profile
+  console.log(auth);
+  useEffect(() => {
+    if (auth.user) {
+      console.log("hi");
+      handleClose();
+    }
+    if (location.pathname === "/login" || location.pathname === "/register") {
+      navigate(-1);
+    }
+  }, [auth.user]);
+  // Handle logout
+  const handleLogout = () => {
+    dispatch(logout());
+    handleCloseUserMenu();
   };
   return (
     <div className="bg-white z-100">
@@ -498,12 +549,48 @@ export default function Navigation() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Sign in
-                  </a>
+                  {auth.user?.firstName ? (
+                    <div>
+                      <Avatar
+                        className="text-white"
+                        onClick={handleUserClick}
+                        aria-controls={open ? "basic-menu" : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? "true" : undefined}
+                        sx={{
+                          bgcolor: deepPurple[500],
+                          color: "white",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {auth.user?.firstName[0].toUpperCase()}
+                      </Avatar>
+                      <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={openUserMenu}
+                        onClose={handleCloseUserMenu}
+                        MenuListProps={{
+                          "aria-labelledby": "basic-button",
+                        }}
+                      >
+                        <MenuItem onClick={handleCloseUserMenu}>
+                          Profile
+                        </MenuItem>
+                        <MenuItem onClick={() => navigate("/account/order")}>
+                          My Orders
+                        </MenuItem>
+                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                      </Menu>
+                    </div>
+                  ) : (
+                    <Button
+                      onClick={handleOpen}
+                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                    >
+                      Sign in
+                    </Button>
+                  )}
                   <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
                   <a
                     href="#"
@@ -557,6 +644,8 @@ export default function Navigation() {
           </div>
         </nav>
       </header>
+
+      <AuthModal handleClose={handleClose} open={openAuthModal} />
     </div>
   );
 }
