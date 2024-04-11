@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { Box, Button, Grid, LinearProgress, Rating } from "@mui/material";
 import ProductReviewCards from "./ProductReviewCards";
 import { mens_kurta } from "../../../Data/Men/men_kurta";
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { findProductById } from "../../../State/Product/Action";
+import { addItemToCart } from "../../../State/Cart/Action";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -39,10 +42,10 @@ const product = {
     { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
   ],
   sizes: [
-    { name: "S", inStock: true },
-    { name: "M", inStock: true },
-    { name: "L", inStock: true },
-    { name: "XL", inStock: true },
+    { name: "38", inStock: true },
+    { name: "39", inStock: true },
+    { name: "40", inStock: true },
+    { name: "41", inStock: true },
   ],
   description:
     'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
@@ -63,11 +66,24 @@ function classNames(...classes) {
 
 export default function ProductDetails() {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
-  const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
+  const [selectedSize, setSelectedSize] = useState("");
   const navigate = useNavigate();
+  const params = useParams();
+  const dispatch = useDispatch();
+  const { products } = useSelector((store) => store);
+  console.log("Selected sixze: ", selectedSize);
+
   const handleAddToCart = () => {
+    const datadd = { productId: params.productId, size: selectedSize.name };
+    console.log("data add to cart: ", datadd);
+    dispatch(addItemToCart(datadd));
     navigate("/cart");
   };
+
+  useEffect(() => {
+    const data = { productId: params.productId };
+    dispatch(findProductById(data));
+  }, [params.productId]);
   return (
     <div className="bg-white lg:px-20">
       <div className="pt-6">
@@ -114,7 +130,7 @@ export default function ProductDetails() {
           <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-lg max-w-[30rem] max-h[35rem]">
               <img
-                src={product.images[0].src}
+                src={products.product?.imageUrl}
                 alt={product.images[0].alt}
                 className="h-full w-full object-cover object-center"
               />
@@ -123,7 +139,7 @@ export default function ProductDetails() {
               {product.images.map((image) => (
                 <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg w-[5rem] h-[5rem]">
                   <img
-                    src={image.src}
+                    src={products.product?.imageUrl}
                     alt={image.alt}
                     className="h-full w-full object-cover object-center"
                   />
@@ -135,29 +151,41 @@ export default function ProductDetails() {
           <div className="lg:col-span-1 lg:pb-24 lg:mr-24 px-4 pb-16 max-w-2xl">
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
               <h1 className="text-lg lg:text-xl font-semibold text-gray-900">
-                {product.name}
+                {products.product?.title}
               </h1>
               <h1 className="text-lg lg:text-xl font-semibold text-gray-900 opacity-60 pt-1">
-                {product.name}
+                {products.product?.branch}
               </h1>
             </div>
 
             {/* Options */}
             <div className="mt-4 lg:row-span-3 lg:mt-0">
-              <h2 className="sr-only">Product information</h2>
+              <h2 className="sr-only">Thông tin sản phẩm</h2>
               <div className="flex space-x-5 items-center text-lg mt-6">
-                <p className="font-semibold">$199</p>
-                <p className="opacity-50 line-through">$199</p>
-                <p className="text-green-500 font-semibold">5% off</p>
+                <p className="font-semibold">
+                  {products.product?.price},000
+                  <span className="text-sm text-gray-600">đ</span>
+                </p>
+                {products.product?.discountedPrice !== 0 && (
+                  <p className="opacity-50 line-through">
+                    {products.product?.discountedPrice},000
+                    <span className="text-sm text-gray-600">đ</span>
+                  </p>
+                )}
+                {products.product?.discountedPrice !== 0 && (
+                  <p className="text-green-500 font-semibold">
+                    {products.product?.discountedPercent}% GIẢM
+                  </p>
+                )}
               </div>
 
               {/* Reviews */}
               <div className="mt-6">
                 <div className="flex items-center space-x-3">
                   <Rating name="read-only" value={5.5} readOnly />
-                  <p className="opacity-50 text-sm">56540 ratings</p>
+                  <p className="opacity-50 text-sm">56540 đánh giá</p>
                   <p className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                    3870 reviews
+                    3870 bình luận
                   </p>
                 </div>
               </div>
@@ -244,7 +272,7 @@ export default function ProductDetails() {
                   sx={{ px: "2rem", py: "1rem", mt: 2 }}
                   variant="contained"
                 >
-                  Add To Cart
+                  Thêm vào giỏ
                 </Button>
               </form>
             </div>
@@ -252,11 +280,11 @@ export default function ProductDetails() {
             <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
               {/* Description and details */}
               <div>
-                <h3 className="sr-only">Description</h3>
+                <h3 className="sr-only">Mô tả</h3>
 
                 <div className="space-y-6">
                   <p className="text-base text-gray-900">
-                    {product.description}
+                    {products.product?.description}
                   </p>
                 </div>
               </div>
@@ -290,7 +318,7 @@ export default function ProductDetails() {
         <section>
           {/* Rating and reviews */}
           <h1 className="font-semibold text-lg pb-4">
-            Recent review and ratings
+            Bình luận và đánh giá gần đây
           </h1>
           <div className="border p-5">
             <Grid container spacing={7}>
@@ -302,15 +330,17 @@ export default function ProductDetails() {
                 </div>
               </Grid>
               <Grid item xs={5}>
-                <h1 className="font-xl font-semibold pb-1">Product rating</h1>
+                <h1 className="font-xl font-semibold pb-1">
+                  Đánh giá sản phẩm
+                </h1>
                 <div className="flex items-center space-x-5">
                   <Rating readOnly precision={0.5} value={4.6}></Rating>
-                  <p className="opacity-60">598490 ratings</p>
+                  <p className="opacity-60">598490 lượt</p>
                 </div>
                 <Box className="mt-5 space-y-3">
                   <Grid container alignItems="center" gap={2}>
                     <Grid item xs={2}>
-                      <p>Excellent</p>
+                      <p>Xuất sắc</p>
                     </Grid>
                     <Grid item xs={7}>
                       <LinearProgress
@@ -323,7 +353,7 @@ export default function ProductDetails() {
                   </Grid>
                   <Grid container alignItems="center" gap={2}>
                     <Grid item xs={2}>
-                      <p>Very good</p>
+                      <p>Rất tốt</p>
                     </Grid>
                     <Grid item xs={7}>
                       <LinearProgress
@@ -336,7 +366,7 @@ export default function ProductDetails() {
                   </Grid>
                   <Grid container alignItems="center" gap={2}>
                     <Grid item xs={2}>
-                      <p>Good</p>
+                      <p>Tốt</p>
                     </Grid>
                     <Grid item xs={7}>
                       <LinearProgress
@@ -349,7 +379,7 @@ export default function ProductDetails() {
                   </Grid>
                   <Grid container alignItems="center" gap={2}>
                     <Grid item xs={2}>
-                      <p>Average</p>
+                      <p>Trung bình</p>
                     </Grid>
                     <Grid item xs={7}>
                       <LinearProgress
@@ -362,7 +392,7 @@ export default function ProductDetails() {
                   </Grid>
                   <Grid container alignItems="center" gap={2}>
                     <Grid item xs={2}>
-                      <p>Poor</p>
+                      <p>Tệ</p>
                     </Grid>
                     <Grid item xs={7}>
                       <LinearProgress
@@ -380,9 +410,9 @@ export default function ProductDetails() {
         </section>
         {/* Similar product */}
         <section className="pt-10">
-          <h1 className="font-semibold py-5 text-lg">Similar product</h1>
+          <h1 className="font-semibold py-5 text-lg">Sản phẩm tương tự</h1>
           <div className="flex flex-wrap space-y-5">
-            {mens_kurta.slice(0, 10).map((item) => (
+            {mens_kurta.slice(0, 5).map((item) => (
               <HomeSectionCard product={item} />
             ))}
           </div>

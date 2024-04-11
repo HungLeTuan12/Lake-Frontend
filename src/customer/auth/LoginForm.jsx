@@ -6,6 +6,7 @@ import { login } from "../../State/Auth/Action";
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -14,6 +15,7 @@ const LoginForm = () => {
       email: data.get("email"),
       password: data.get("password"),
     };
+
     dispatch(login(userData));
   };
   return (

@@ -13,6 +13,7 @@ import { deepPurple } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, logout } from "../../../State/Auth/Action";
 import store from "../../../State/store";
+import { getCart } from "../../../State/Cart/Action";
 // Logic
 const navigation = {
   // Categories
@@ -22,7 +23,7 @@ const navigation = {
       name: "Women",
       featured: [
         {
-          name: "New Arrivals",
+          name: "Sản phẩm mới",
           href: "/",
           imageSrc:
             "https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg",
@@ -30,7 +31,7 @@ const navigation = {
             "Models sitting back to back, wearing Basic Tee in black and bone.",
         },
         {
-          name: "Basic Tees",
+          name: "Xu hướng gần đây",
           href: "/",
           imageSrc:
             "https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg",
@@ -45,38 +46,17 @@ const navigation = {
           items: [
             { name: "Tops", id: "top", href: `{women/clothing/tops}` },
             { name: "Dresses", id: "women_dress", href: "#" },
-            { name: "Women Jeans", id: "women_jeans" },
-            { name: "Lengha Choli", id: "lengha_choli" },
-            { name: "Sweaters", id: "sweater" },
-            { name: "T-Shirts", id: "t-shirt" },
-            { name: "Jackets", id: "jacket" },
-            { name: "Gouns", id: "gouns" },
-            { name: "Sarees", id: "saree" },
-            { name: "Kurtas", id: "kurtas" },
           ],
         },
         {
           id: "accessories",
           name: "Accessories",
-          items: [
-            { name: "Watches", id: "watch" },
-            { name: "Wallets", id: "wallet" },
-            { name: "Bags", id: "bag" },
-            { name: "Sunglasses", id: "sunglasse" },
-            { name: "Hats", id: "hat" },
-            { name: "Belts", id: "belt" },
-          ],
+          items: [{ name: "Watches", id: "watch" }],
         },
         {
           id: "brands",
           name: "Brands",
-          items: [
-            { name: "Full Nelson", id: "#" },
-            { name: "My Way", id: "#" },
-            { name: "Re-Arranged", id: "#" },
-            { name: "Counterfeit", id: "#" },
-            { name: "Significant Other", id: "#" },
-          ],
+          items: [{ name: "Full Nelson", id: "#" }],
         },
       ],
     },
@@ -108,11 +88,48 @@ const navigation = {
           items: [
             { name: "Mens Kurtas", id: "mens_kurta" },
             { name: "Shirt", id: "shirt" },
-            { name: "Men Jeans", id: "men_jeans" },
-            { name: "Sweaters", id: "#" },
-            { name: "T-Shirts", id: "t-shirt" },
-            { name: "Jackets", id: "#" },
-            { name: "Activewear", id: "#" },
+          ],
+        },
+        {
+          id: "accessories",
+          name: "Accessories",
+          items: [{ name: "Watches", id: "#" }],
+        },
+        {
+          id: "brands",
+          name: "Brands",
+          items: [{ name: "Re-Arranged", id: "#" }],
+        },
+      ],
+    },
+    {
+      id: "kid",
+      name: "Kids",
+      featured: [
+        {
+          name: "New Arrivals",
+          id: "#",
+          imageSrc:
+            "https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg",
+          imageAlt:
+            "Drawstring top with elastic loop closure and textured interior padding.",
+        },
+        {
+          name: "Artwork Tees",
+          id: "#",
+          imageSrc:
+            "https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg",
+          imageAlt:
+            "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.",
+        },
+      ],
+      sections: [
+        {
+          id: "clothing",
+          name: "Clothing",
+          items: [
+            { name: "Mens Kurtas", id: "mens_kurta" },
+            { name: "Shirt", id: "shirt" },
           ],
         },
         {
@@ -121,29 +138,17 @@ const navigation = {
           items: [
             { name: "Watches", id: "#" },
             { name: "Wallets", id: "#" },
-            { name: "Bags", id: "#" },
-            { name: "Sunglasses", id: "#" },
-            { name: "Hats", id: "#" },
-            { name: "Belts", id: "#" },
           ],
         },
         {
           id: "brands",
           name: "Brands",
-          items: [
-            { name: "Re-Arranged", id: "#" },
-            { name: "Counterfeit", id: "#" },
-            { name: "Full Nelson", id: "#" },
-            { name: "My Way", id: "#" },
-          ],
+          items: [{ name: "Re-Arranged", id: "#" }],
         },
       ],
     },
   ],
-  pages: [
-    { name: "Company", id: "/" },
-    { name: "Stores", id: "/" },
-  ],
+  pages: [{ name: "Sale", id: "/" }],
 };
 // Function
 function classNames(...classes) {
@@ -160,6 +165,8 @@ export default function Navigation() {
   const jwt = localStorage.getItem("jwt");
   const navigate = useNavigate();
   const location = useLocation();
+  const { carts } = useSelector((store) => store);
+
   // Handle open
   const handleOpen = () => {
     setOpenAuthModal(true);
@@ -180,6 +187,15 @@ export default function Navigation() {
     navigate(`/${category.id}/${section.id}/${item.id}`);
     onClose();
   };
+
+  const handleGetCart = () => {
+    navigate("/cart");
+  };
+
+  useEffect(() => {
+    dispatch(getCart());
+  }, []);
+
   // Get user profile
   useEffect(() => {
     if (jwt) {
@@ -201,6 +217,9 @@ export default function Navigation() {
   const handleLogout = () => {
     dispatch(logout());
     handleCloseUserMenu();
+  };
+  const handleBackToHome = () => {
+    navigate("/");
   };
   return (
     <div className="bg-white z-100">
@@ -382,7 +401,7 @@ export default function Navigation() {
 
       <header className="relative bg-white">
         <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
-          Get free delivery on orders over $100
+          Nhận giao hàng miễn phí cho đơn hàng trên 2.000.000đ
         </p>
 
         <nav
@@ -403,9 +422,10 @@ export default function Navigation() {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                <a href="#">
+                <a href="">
                   <span className="sr-only">Your Company</span>
                   <img
+                    onClick={handleBackToHome}
                     className="h-8 w-auto"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                     alt=""
@@ -575,10 +595,10 @@ export default function Navigation() {
                         }}
                       >
                         <MenuItem onClick={handleCloseUserMenu}>
-                          Profile
+                          Trang cá nhân
                         </MenuItem>
                         <MenuItem onClick={() => navigate("/account/order")}>
-                          My Orders
+                          Đơn hàng của tôi
                         </MenuItem>
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>
                       </Menu>
@@ -588,16 +608,16 @@ export default function Navigation() {
                       onClick={handleOpen}
                       className="text-sm font-medium text-gray-700 hover:text-gray-800"
                     >
-                      Sign in
+                      Đăng nhập
                     </Button>
                   )}
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+                  {/* <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
                   <a
                     href="#"
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
                     Create account
-                  </a>
+                  </a> */}
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">
@@ -605,12 +625,41 @@ export default function Navigation() {
                     href="#"
                     className="flex items-center text-gray-700 hover:text-gray-800"
                   >
-                    <img
+                    <p>
+                      <svg
+                        class="w-12 h-12"
+                        enable-background="new 0 0 512 512"
+                        viewBox="0 0 512 512"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle cx="256" cy="256" fill="#d80027" r="256" />
+                        <path
+                          d="m256 133.565 27.628 85.029h89.405l-72.331 52.55 27.628 85.03-72.33-52.551-72.33 52.551 27.628-85.03-72.33-52.55h89.404z"
+                          fill="#ffda44"
+                        />
+                        <g />
+                        <g />
+                        <g />
+                        <g />
+                        <g />
+                        <g />
+                        <g />
+                        <g />
+                        <g />
+                        <g />
+                        <g />
+                        <g />
+                        <g />
+                        <g />
+                        <g />
+                      </svg>
+                    </p>
+                    {/* <img
                       src="https://tailwindui.com/img/flags/flag-canada.svg"
                       alt=""
                       className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-sm font-medium">CAD</span>
+                    /> */}
+                    <span className="ml-3 block text-sm font-medium">VIE</span>
                     <span className="sr-only">, change currency</span>
                   </a>
                 </div>
@@ -618,7 +667,7 @@ export default function Navigation() {
                 {/* Search */}
                 <div className="flex lg:ml-6">
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
-                    <span className="sr-only">Search</span>
+                    <span className="sr-only">Tìm kiếm</span>
                     <MagnifyingGlassIcon
                       className="h-6 w-6"
                       aria-hidden="true"
@@ -630,13 +679,16 @@ export default function Navigation() {
                 <div className="ml-4 flow-root lg:ml-6">
                   <a href="#" className="group -m-2 flex items-center p-2">
                     <ShoppingBagIcon
+                      onClick={handleGetCart}
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      0
+                      3
                     </span>
-                    <span className="sr-only">items in cart, view bag</span>
+                    <span className="sr-only">
+                      Đã thêm sản phẩm, xem giỏ hàng
+                    </span>
                   </a>
                 </div>
               </div>

@@ -1,14 +1,16 @@
 export const mainCarouselData = [
     {
-        image: "https://themewagon.github.io/famms/images/slider-bg.jpg",
+        image: "https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/if_w_gt_1920,w_1920/4311413_CAM_Onsite_SS_24_Mid_Season_Sale_5_11_Apr_VN_Masthead_DT_2880x1280px_ba57a1c243.jpg",
     },
     {
-        image: "https://themewagon.github.io/famms/images/arrival-bg.png",
+        image: "https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/if_w_gt_1920,w_1920/4311413_CAM_Onsite_SS_24_Mid_Season_Sale_5_11_Apr_VN_Masthead_DT_2880x1280px_ba57a1c243.jpg",
+
     },
     {
-        image: "https://themewagon.github.io/famms/images/slider-bg.jpg",
+        image: "https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/if_w_gt_1920,w_1920/4311413_CAM_Onsite_SS_24_Mid_Season_Sale_5_11_Apr_VN_Masthead_DT_2880x1280px_ba57a1c243.jpg",
     },
     {
-        image: "https://themewagon.github.io/famms/images/arrival-bg.png",
+        image: "https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/if_w_gt_1920,w_1920/4311413_CAM_Onsite_SS_24_Mid_Season_Sale_5_11_Apr_VN_Masthead_DT_2880x1280px_ba57a1c243.jpg",
+
     }
 ]
