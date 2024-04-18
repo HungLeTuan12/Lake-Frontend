@@ -12,9 +12,9 @@ import {
   Button,
 } from "@mui/material";
 const initialSizes = [
-  { name: "S", quantity: 0 },
-  { name: "M", quantity: 0 },
-  { name: "L", quantity: 0 },
+  { name: "39", quantity: 0 },
+  { name: "40", quantity: 0 },
+  { name: "41", quantity: 0 },
 ];
 const CreateProductForm = () => {
   const [productData, setProductData] = useState({

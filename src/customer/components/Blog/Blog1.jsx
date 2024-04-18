@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Grid, LinearProgress, Rating } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-const Blog = () => {
+const Blog1 = () => {
   const navigate = useNavigate();
   const product = {
     name: "Basic Tee 6-Pack",
@@ -93,63 +93,38 @@ const Blog = () => {
           </ol>
         </nav>
         <section className="grid grid-cols-1  gap-x-8 gap-y-10 px-4 pt-10">
-          {/* Image gallery */}
-          {/* <div className="flex flex-col items-center">
-            <div className="overflow-hidden rounded-lg max-w-[30rem] max-h[35rem]">
-              <img className="h-full w-full object-cover object-center" />
-            </div>
-            <div className="flex flex-wrap items-center space-x-5 mt-4"></div>
-          </div> */}
           {/* Product info */}
           <div className="">
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
               <h1 className="text-lg  text-center lg:text-xl font-semibold text-gray-900">
-                Phối đồ với Giày Nike Air Force 1 Low Brooklyn Cream – Giày Nike
-                âm Dương
+                Phối đồ với giày Jordan 1 low Paris hợp thời trang và Phong Cách
               </h1>
-              <h1 className="text-lg mt-5 lg:text-xl  text-gray-900 opacity-60 pt-1">
-                Giày Nike Air Force 1 Low Brooklyn Cream – Giày Nike âm Dương là
-                cái tên đã gây chấn động cộng đồng sneakerheads trên toàn thế
-                giới và cả Việt Nam cũng không ngoại lệ. Đôi giày Nike AF1 mới
-                này nổi bật với phần kiểu dáng vô cùng độc đáo, đế giày đặc biệt
-                giúp hack chiều cao đáng kể cũng là một trong những điểm thu hút
-                sự chú ý. Vậy thì với một đôi giày có thiết kế đơn giản, màu sắc
-                trắng tinh tế như vậy thì chúng ta nên chọn cách phối đồ với
-                Nike âm Dương như thế nào để thật nổi bật và thu hút nhỉ? Hãy
-                cùng Tyhi Sneaker tìm hiểu xem mọi người phối đồ với Giày Nike
-                Âm Dương như thế nào nhé!
-              </h1>
+
               <img
                 className="h-full w-full mt-5"
-                src="https://tyhisneaker.com/wp-content/uploads/2023/03/nike-am-duong-2048x1024.png"
+                src="https://tyhisneaker.com/wp-content/uploads/2022/10/phoi-do-voi-giay-jordan-1-low-paris-9.jpeg"
                 alt=""
               />
-              <h1 className="text-lg mt-5  text-center lg:text-xl font-semibold text-gray-900">
-                Những cách phối đồ cùng với giày Nike âm Dương
-              </h1>
-              <h1 className="text-lg mt-5 lg:text-xl  text-gray-900 opacity-60 pt-1">
-                Học Tiktoker Nam Hoàng cách phối đồ cùng Nike âm Dương:<br></br>{" "}
-                Chàng Tiktoker giới trẻ này diện Nike âm Dương khi ra đi chơi,
-                dạo phố nên chắc chắn trang phục của anh chàng sẽ vô cùng thoải
-                mái và năng động, một chút street style. Sẽ rất phù hợp với
-                những điểm thiết kế của Nike âm Dương.<br></br> Anh chàng diện
-                cho mình một chiếc quần jogger màu đem khá basic nhưng vẫn rất
-                tôn dáng đúng không nào. Cô nàng lựa chọn phối cùng với chiếc áo
-                sơ mi kem hoạ tiết LV đen nổi bật, độc lạ giúp hài hòa bộ outfit
-                của cô nàng. Màu áo cũng matching với màu của đôi giày nên nhìn
-                tổng thể bộ đồ của Nam Hoàng rất hài hòa và nổi bật.
-              </h1>
               <img
                 className="h-full w-full mt-5"
-                src="https://tyhisneaker.com/wp-content/uploads/2023/03/phoi-do-voi-nike-am-duong-1536x2048.webp"
+                src="https://tyhisneaker.com/wp-content/uploads/2021/03/phoi-do-voi-giay-jordan-1-low-paris-14.jpeg"
                 alt=""
               />
-              <h1 className="text-lg mt-5 lg:text-xl  text-gray-900 opacity-60 pt-1">
-                Với bộ outfit này chúng ta có thể đi hẹn hò, dạo phố, đi coffee
-                cùng bạn bè, đi dạo phố,… vẫn rất thời trang và hợp phong cách
-                đó nha. Nếu bạn chưa biết phối gì với Nike âm Dương thì có thể
-                học theo nàng Nam Hoàng nhé!
-              </h1>
+              <img
+                className="h-full w-full mt-5"
+                src="https://tyhisneaker.com/wp-content/uploads/2021/03/phoi-do-voi-giay-jordan-1-low-paris-12.jpeg"
+                alt=""
+              />
+              <img
+                className="h-full w-full mt-5"
+                src="https://tyhisneaker.com/wp-content/uploads/2021/03/phoi-do-voi-giay-jordan-1-low-paris-11.jpeg"
+                alt=""
+              />
+              <img
+                className="h-full w-full mt-5"
+                src="https://tyhisneaker.com/wp-content/uploads/2021/03/phoi-do-voi-giay-jordan-1-low-paris.jpeg"
+                alt=""
+              />
             </div>
           </div>
         </section>
@@ -158,4 +133,4 @@ const Blog = () => {
     </div>
   );
 };
-export default Blog;
+export default Blog1;

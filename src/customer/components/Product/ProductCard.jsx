@@ -18,17 +18,20 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="flex space-x-2 items-center">
           <p className="font-semibold">
-            {product.price},000<span className="text-sm text-gray-600">đ</span>
+            {product.discountedPrice},000
+            <span className="text-sm text-gray-600">đ</span>
           </p>
           {product.discountedPrice !== 0 && (
             <p className="line-through opacity-50">
-              {product.discountedPrice},000
+              {product.price},000
               <span className="text-sm text-gray-600">đ</span>
             </p>
           )}
           {product.discountedPrice !== 0 && (
             <p className="text-green-600 font-semibold">
-              {Math.round((product.discountedPrice / product.price) * 100)}% off
+              {100 -
+                Math.round((product.discountedPrice / product.price) * 100)}
+              % off
             </p>
           )}
         </div>

@@ -10,6 +10,10 @@ import Checkout from "../customer/components/Checkout/Checkout";
 import Order from "../customer/components/Order/Order";
 import OrderDetails from "../customer/components/Order/OrderDetails";
 import PaymentSuccess from "../customer/components/Payment/PaymentSuccess";
+import Profile from "../customer/components/Profile/Profile";
+import Blog from "../customer/components/Blog/Blog";
+import Blog1 from "../customer/components/Blog/Blog1";
+import Payment from "../customer/components/Checkout/Payment";
 const CustomerRouters = () => {
   return (
     <div>
@@ -19,9 +23,12 @@ const CustomerRouters = () => {
       <Routes>
         <Route path="/login" element={<HomePage />}></Route>
         <Route path="/register" element={<HomePage />}></Route>
-
+        <Route path="/profile" element={<Profile />}></Route>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/blog/1" element={<Blog />}></Route>
+        <Route path="/blog/2" element={<Blog1 />}></Route>
+        <Route path="/payment" element={<Payment />}></Route>
         <Route
           path="/:lavelOne/:lavelTwo/:lavelThree"
           element={<Product />}

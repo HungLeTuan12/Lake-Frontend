@@ -72,9 +72,12 @@ const filters = [
     id: "size",
     name: "Kích cỡ",
     options: [
-      { value: "S", label: "38" },
-      { value: "M", label: "39" },
-      { value: "L", label: "40" },
+      { value: "37", label: "37" },
+      { value: "36", label: "36" },
+      { value: "38", label: "38" },
+      { value: "39", label: "39" },
+      { value: "40", label: "40" },
+      { value: "41", label: "41" },
     ],
   },
 ];
@@ -185,7 +188,7 @@ export default function Product() {
       minDiscount: discount || 0,
       sort: sortValue || "price_low",
       pageNumber: pageNumber - 1,
-      pageSize: 5,
+      pageSize: 8,
       stock: stock,
     };
 
@@ -330,7 +333,7 @@ export default function Product() {
         <main className="mx-auto px-4 sm:px-6 lg:px-20">
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-              New Arrivals
+              Sản phẩm
             </h1>
 
             <div className="flex items-center">

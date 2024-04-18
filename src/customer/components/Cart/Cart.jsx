@@ -26,29 +26,34 @@ const Cart = () => {
         </div>
         <div className="px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0 ">
           <div className="border p-5">
-            <p className="uppercase pb-4 font-bold opacity-60">Price Details</p>
+            <p className="uppercase pb-4 font-bold opacity-60">
+              Chi tiết giỏ hàng
+            </p>
             <hr />
             {/* Price details */}
             <div className="space-y-3 font-semibold p-3">
               <div className="flex justify-between pt-3 text-black">
-                <span>Price</span>
-                <span>${carts.cart?.totalPrice}</span>
+                <span>Giá</span>
+                <span>{carts.cart?.totalPrice},000</span>
               </div>
               <div className="flex justify-between pt-3 text-black">
-                <span>Discount</span>
+                <span>Giảm giá</span>
                 <span className="text-green-600">
-                  -${carts.cart?.totalDiscountedPrice}
+                  -{carts.cart?.totalDiscountedPrice},000
                 </span>
               </div>
               <div className="flex justify-between pt-3 text-black">
-                <span>Delivery</span>
-                <span className="text-green-600">Free</span>
+                <span>Phí vận chuyển</span>
+                <span className="text-green-600">30,000</span>
               </div>
               <hr />
               <div className="flex justify-between pt-3 text-black font-bold">
-                <span>Total Amount</span>
+                <span>Tổng</span>
                 <span className="text-green-600">
-                  ${carts.cart?.totalPrice - carts.cart?.totalDiscountedPrice}
+                  {carts.cart?.totalPrice -
+                    carts.cart?.totalDiscountedPrice -
+                    30}
+                  ,000
                 </span>
               </div>
             </div>
@@ -59,7 +64,7 @@ const Cart = () => {
               className="w-full mt-5"
               sx={{ px: "2.5rem", py: "0.5rem", bgcolor: "#9155fd" }}
             >
-              Checkout
+              Thanh toán
             </Button>
           </div>
         </div>

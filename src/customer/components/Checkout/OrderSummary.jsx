@@ -3,7 +3,7 @@ import AddressCard from "../AddressCard/AddressCard";
 import { Button } from "@mui/material";
 import CartItem from "../Cart/CartItem";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getOrderById } from "../../../State/Order/Action";
 import { createPayment } from "../../../State/Payment/Action";
 
@@ -13,13 +13,14 @@ const OrderSummary = () => {
   const searchParams = new URLSearchParams(location.search);
   const orderId = searchParams.get("order_id");
   const { order } = useSelector((store) => store);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getOrderById(orderId));
   }, [orderId]);
 
   const handleCheckOut = () => {
-    dispatch(createPayment(orderId));
+    navigate("/payment");
   };
   return (
     <div>
@@ -37,30 +38,33 @@ const OrderSummary = () => {
           <div className="px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0 ">
             <div className="border p-5">
               <p className="uppercase pb-4 font-bold opacity-60">
-                Price Details
+                Chi tiết đơn hàng
               </p>
               <hr />
               {/* Price details */}
               <div className="space-y-3 font-semibold p-3">
                 <div className="flex justify-between pt-3 text-black">
-                  <span>Price</span>
-                  <span>${order.order.totalPrice}</span>
+                  <span>Giá</span>
+                  <span>${order.order.totalPrice},000</span>
                 </div>
                 <div className="flex justify-between pt-3 text-black">
-                  <span>Disccount</span>
+                  <span>Giảm giá</span>
                   <span className="text-green-600">
-                    -${order.order.totalDiscountedPrice}
+                    -${order.order.totalDiscountedPrice},000
                   </span>
                 </div>
                 <div className="flex justify-between pt-3 text-black">
-                  <span>Delivery</span>
-                  <span className="text-green-600">Free</span>
+                  <span>Phí vận chuyển</span>
+                  <span className="text-green-600">30,000</span>
                 </div>
                 <hr />
                 <div className="flex justify-between pt-3 text-black font-bold">
-                  <span>Total Amount</span>
+                  <span>Tổng</span>
                   <span className="text-green-600">
-                    ${order.order.totalPrice - order.order.totalDiscountedPrice}
+                    {order.order.totalPrice -
+                      order.order.totalDiscountedPrice -
+                      30}
+                    ,000
                   </span>
                 </div>
               </div>
@@ -71,7 +75,7 @@ const OrderSummary = () => {
                 sx={{ px: "2.5rem", py: "0.5rem", bgcolor: "#9155fd" }}
                 onClick={handleCheckOut}
               >
-                Checkout
+                Thanh toán
               </Button>
             </div>
           </div>

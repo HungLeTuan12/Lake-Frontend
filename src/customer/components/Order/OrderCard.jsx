@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import AdjustIcon from "@mui/icons-material/Adjust";
-const OrderCard = () => {
+const OrderCard = (item) => {
   return (
     <div className="p-5 border shadow-lg hover:shadow-2xl">
       <Grid container spacing={2} sx={{ justifyContent: "space-between" }}>
@@ -14,7 +14,7 @@ const OrderCard = () => {
               alt=""
             />
             <div className="ml-5 space-y-2">
-              <p className="">Nike Air Force 1 Mid By You</p>
+              <p className="">{item?.product?.title}</p>
               <p className="opacity-50 text-xs font-semibold">Size: M</p>
               <p className="opacity-50 text-xs font-semibold">Color: Black</p>
             </div>

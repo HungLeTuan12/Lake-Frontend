@@ -20,7 +20,7 @@ const navigation = {
   categories: [
     {
       id: "women",
-      name: "Women",
+      name: "Giày Vans",
       featured: [
         {
           name: "Sản phẩm mới",
@@ -43,26 +43,13 @@ const navigation = {
         {
           id: "clothing",
           name: "Clothing",
-          items: [
-            { name: "Tops", id: "top", href: `{women/clothing/tops}` },
-            { name: "Dresses", id: "women_dress", href: "#" },
-          ],
-        },
-        {
-          id: "accessories",
-          name: "Accessories",
-          items: [{ name: "Watches", id: "watch" }],
-        },
-        {
-          id: "brands",
-          name: "Brands",
-          items: [{ name: "Full Nelson", id: "#" }],
+          items: [{ name: "Tops", id: "top" }],
         },
       ],
     },
     {
       id: "men",
-      name: "Men",
+      name: "Giày Nike",
       featured: [
         {
           name: "New Arrivals",
@@ -84,27 +71,14 @@ const navigation = {
       sections: [
         {
           id: "clothing",
-          name: "Clothing",
-          items: [
-            { name: "Mens Kurtas", id: "mens_kurta" },
-            { name: "Shirt", id: "shirt" },
-          ],
-        },
-        {
-          id: "accessories",
-          name: "Accessories",
-          items: [{ name: "Watches", id: "#" }],
-        },
-        {
-          id: "brands",
-          name: "Brands",
-          items: [{ name: "Re-Arranged", id: "#" }],
+          name: "Giày nam",
+          items: [{ name: "Giày nam", id: "mens_kurta" }],
         },
       ],
     },
     {
-      id: "kid",
-      name: "Kids",
+      id: "men",
+      name: "Giày MLB",
       featured: [
         {
           name: "New Arrivals",
@@ -126,29 +100,58 @@ const navigation = {
       sections: [
         {
           id: "clothing",
-          name: "Clothing",
-          items: [
-            { name: "Mens Kurtas", id: "mens_kurta" },
-            { name: "Shirt", id: "shirt" },
-          ],
-        },
-        {
-          id: "accessories",
-          name: "Accessories",
-          items: [
-            { name: "Watches", id: "#" },
-            { name: "Wallets", id: "#" },
-          ],
-        },
-        {
-          id: "brands",
-          name: "Brands",
-          items: [{ name: "Re-Arranged", id: "#" }],
+          name: "Giày nam",
+          items: [{ name: "Giày nam", id: "mlb" }],
         },
       ],
     },
+    // {
+    //   id: "kid",
+    //   name: "Kids",
+    //   featured: [
+    //     {
+    //       name: "New Arrivals",
+    //       id: "#",
+    //       imageSrc:
+    //         "https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg",
+    //       imageAlt:
+    //         "Drawstring top with elastic loop closure and textured interior padding.",
+    //     },
+    //     {
+    //       name: "Artwork Tees",
+    //       id: "#",
+    //       imageSrc:
+    //         "https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg",
+    //       imageAlt:
+    //         "Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.",
+    //     },
+    //   ],
+    //   sections: [
+    //     {
+    //       id: "clothing",
+    //       name: "Clothing",
+    //       items: [
+    //         { name: "Mens Kurtas", id: "mens_kurta" },
+    //         { name: "Shirt", id: "shirt" },
+    //       ],
+    //     },
+    //     {
+    //       id: "accessories",
+    //       name: "Accessories",
+    //       items: [
+    //         { name: "Watches", id: "#" },
+    //         { name: "Wallets", id: "#" },
+    //       ],
+    //     },
+    //     {
+    //       id: "brands",
+    //       name: "Brands",
+    //       items: [{ name: "Re-Arranged", id: "#" }],
+    //     },
+    //   ],
+    // },
   ],
-  pages: [{ name: "Sale", id: "/" }],
+  pages: [{ name: "Giảm giá", id: "/" }],
 };
 // Function
 function classNames(...classes) {
@@ -594,13 +597,13 @@ export default function Navigation() {
                           "aria-labelledby": "basic-button",
                         }}
                       >
-                        <MenuItem onClick={handleCloseUserMenu}>
+                        <MenuItem onClick={() => navigate("/profile")}>
                           Trang cá nhân
                         </MenuItem>
                         <MenuItem onClick={() => navigate("/account/order")}>
                           Đơn hàng của tôi
                         </MenuItem>
-                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                        <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
                       </Menu>
                     </div>
                   ) : (

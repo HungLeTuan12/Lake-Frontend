@@ -50,10 +50,10 @@ const product = {
   description:
     'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
   highlights: [
-    "Hand cut and sewn locally",
-    "Dyed with our proprietary colors",
-    "Pre-washed & pre-shrunk",
-    "Ultra-soft 100% cotton",
+    "Size: 35, 36, 37, 38, 39, 40, 41, 42, 43, 44",
+    "Quà tặng: Full box + tax + bill, Tặng tất",
+    "Thương hiệu: Nike",
+    "Loại hàng: Rep 1 - 1",
   ],
   details:
     'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
@@ -120,7 +120,7 @@ export default function ProductDetails() {
                 aria-current="page"
                 className="font-medium text-gray-500 hover:text-gray-600"
               >
-                {product.name}
+                {products.product?.title}
               </a>
             </li>
           </ol>
@@ -163,18 +163,24 @@ export default function ProductDetails() {
               <h2 className="sr-only">Thông tin sản phẩm</h2>
               <div className="flex space-x-5 items-center text-lg mt-6">
                 <p className="font-semibold">
-                  {products.product?.price},000
+                  {products.product?.discountedPrice},000
                   <span className="text-sm text-gray-600">đ</span>
                 </p>
                 {products.product?.discountedPrice !== 0 && (
                   <p className="opacity-50 line-through">
-                    {products.product?.discountedPrice},000
+                    {products.product?.price},000
                     <span className="text-sm text-gray-600">đ</span>
                   </p>
                 )}
                 {products.product?.discountedPrice !== 0 && (
                   <p className="text-green-500 font-semibold">
-                    {products.product?.discountedPercent}% GIẢM
+                    {100 -
+                      Math.round(
+                        (products.product?.discountedPrice /
+                          products.product?.price) *
+                          100
+                      )}
+                    % GIẢM
                   </p>
                 )}
               </div>
@@ -280,9 +286,9 @@ export default function ProductDetails() {
             <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
               {/* Description and details */}
               <div>
-                <h3 className="sr-only">Mô tả</h3>
+                <h3 className="font-bold">Mô tả</h3>
 
-                <div className="space-y-6">
+                <div className="space-y-6 mt-2">
                   <p className="text-base text-gray-900">
                     {products.product?.description}
                   </p>
@@ -291,7 +297,7 @@ export default function ProductDetails() {
 
               <div className="mt-10">
                 <h3 className="text-sm font-medium text-gray-900">
-                  Highlights
+                  Thông số sản phẩm:
                 </h3>
 
                 <div className="mt-4">
@@ -315,6 +321,105 @@ export default function ProductDetails() {
             </div>
           </div>
         </section>
+        {/* Chon size giay */}
+        <section className="grid gap-x-8 gap-y-5 px-4 pt-3">
+          {/* Image gallery */}
+          {/* Product info */}
+          <div className=" lg:pb-5 lg:mr-24 px-4  ">
+            <h1 className="text-lg text-blue-700 font-bold mb-2 uppercase">
+              Mô tả sản phẩm
+            </h1>
+            <p className=" text-gray-700  mb-2 ">
+              Giày{" "}
+              <span className="text-blue-700">{products.product?.title}</span>{" "}
+              Bản Cao Cấp tinh tế & màu sắc vô cùng dễ phối đồ. Vậy nên đôi giày
+              này trở nên phổ biến, mang tính biểu tượng và được rất nhiều giới
+              trẻ yêu thích.
+            </p>
+            <p className="text-gray-700  mb-2 ">
+              Và nếu bạn cũng là một người đam mê dòng sneaker dễ mang, dễ phố
+              đồ thì không nên bỏ qua mẫu giày siêu phẩm này đâu nhé! Dưới đây
+              là một số hình ảnh của đôi giày Vans Caro Slip on Bản Cao Cấp tại
+              HHH Sneaker (hàng chuẩn rep 1:1, bản xịn nhất thị trường).
+            </p>
+            <h1 className="text-lg text-black-700 font-bold mb-2 uppercase">
+              1. Mô tả về Giày{" "}
+              <span className="text-blue-700">{products.product?.title}</span>{" "}
+              on Bản Cao Cấp
+            </h1>
+            <p>
+              Khác với những dòng Nike khác cũng như các thương hiệu giày thể
+              thao khác,{" "}
+              <span className="text-blue-700">{products.product?.title}</span>{" "}
+              on Bản Cao Cấpđược nhiều người biết đến bởi thiết kế mới lạ, tiện
+              dụng. Không cần thắt dây giày, không cần vất vả khom lưng để mang
+              giày, với{" "}
+              <span className="text-blue-700">{products.product?.title}</span>{" "}
+              on Bản Cao Cấp bạn chỉ cần xỏ chân vào một cách nhanh chóng là có
+              thể ra ngoài.
+              <img
+                className="w-full h-full m-2"
+                src={products.product?.imageUrl}
+                alt=""
+              />
+            </p>
+
+            <p>
+              Không chỉ thành công bởi việc giữ nguyên những thiết kế cơ bản với
+              những gam màu đơn sắc. Vans còn cho dòng giày Slip-On liên tục
+              “chào hàng” những thiết kế mới lạ khác từ họa tiết cho đến sự phối
+              hợp màu sắc để tạo điểm nhấn. Trong số đó phải kể đến, Vans
+              Slip-On Checkerboard ra đời trong khoảng 1977. Không ít các bạn
+              trẻ hiện nay vẫn còn “say đắm” với thiết kế chất lừ “tưởng chừng
+              như đi vào quên lãng này”.
+            </p>
+          </div>
+        </section>
+        <section className="grid gap-x-8 gap-y-10 px-4 pt-3">
+          {/* Image gallery */}
+          {/* Product info */}
+          <div className=" lg:pb-5 lg:mr-24 px-4 pb-5 ">
+            <h1 className="text-lg text-blue-700 font-bold mb-5">
+              CÁCH CHỌN SIZE GIÀY
+            </h1>
+            <img
+              className="w-full h-full"
+              src="https://tyhisneaker.com/wp-content/uploads/2022/08/bang-size-giay-cach-quy-doi-size-giay-quoc-te-va-viet-nam-2022-11082022164620-1.jpg"
+              alt=""
+            />
+          </div>
+
+          <section></section>
+        </section>
+        <section className="grid gap-x-8 gap-y-10 px-4 pt-3">
+          {/* Image gallery */}
+          {/* Product info */}
+          <div className=" lg:pb-24 lg:mr-24 px-4 pb-16 ">
+            <h1 className="text-lg text-gray-700 font-bold mb-2">
+              <span className="text-red-700">Lưu ý</span>: Shop có các mẫu
+              Sneaker Bigsize từ 44 - 45 -46 - 47 - 48 - 49 cho anh em chân to
+              giá chênh lệch 30 - 50k so với size chuẩn. Vui lòng nhắn tin
+              Fanpage hoặc Zalo để check size. Xin cảm ơn.
+            </h1>
+            <h1 className="text-lg text-blue-700 font-bold mb-2 uppercase">
+              Những lý do bạn nên mua giày sneaker tại HHH Sneaker
+            </h1>
+            <ul>
+              <li className="mt-1">
+                - Giày chuẩn hàng Trung bản chuẩn nhất, cao cấp nhất thị trường.
+              </li>
+              <li className="mt-1">
+                - Kiểm tra hàng mới thanh toán, đổi trả size nhanh chóng.
+              </li>
+              <li className="mt-1">- Mẫu giày Trends, đẹp, đủ mẫu, đủ size.</li>
+              <li className="mt-1">- Ship COD toàn quốc nhanh chóng.</li>
+              <li className="mt-1">- Bảo hành lên đến 6 tháng.</li>
+              <li className="mt-1">
+                - Freeship cho đơn 2 đôi hoặc đơn thứ 2; Mua 5 đôi tặng 1 đôi.
+              </li>
+            </ul>
+          </div>
+        </section>
         <section>
           {/* Rating and reviews */}
           <h1 className="font-semibold text-lg pb-4">
@@ -324,7 +429,7 @@ export default function ProductDetails() {
             <Grid container spacing={7}>
               <Grid item xs={7}>
                 <div className="">
-                  {[1, 1, 1].map((item) => (
+                  {[1].map((item) => (
                     <ProductReviewCards />
                   ))}
                 </div>

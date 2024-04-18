@@ -28,7 +28,7 @@ const DeliveryAddressForm = () => {
   return (
     <div>
       <Grid container spacing={4}>
-        <Grid
+        {/* <Grid
           xs={12}
           lg={5}
           className="border rounded-e-md shadow-md h-[30.5rem] overflow-y-scroll"
@@ -43,8 +43,8 @@ const DeliveryAddressForm = () => {
               Deliver Here
             </Button>
           </div>
-        </Grid>
-        <Grid item xs={12} lg={7}>
+        </Grid> */}
+        <Grid item xs={12} lg={12}>
           <Box className="border rounded-s-md shadow-md p-5">
             <form onSubmit={handleSubmit} action="">
               <Grid container spacing={3}>
@@ -54,7 +54,7 @@ const DeliveryAddressForm = () => {
                     required
                     id="firstName"
                     name="firstName"
-                    label="First Name"
+                    label="Họ"
                     fullWidth
                     autoComplete="given-name"
                   ></TextField>
@@ -65,7 +65,7 @@ const DeliveryAddressForm = () => {
                     required
                     id="lastName"
                     name="lastName"
-                    label="Last Name"
+                    label="Tên"
                     fullWidth
                     autoComplete="given-name"
                   ></TextField>
@@ -76,7 +76,7 @@ const DeliveryAddressForm = () => {
                     required
                     id="address"
                     name="address"
-                    label="Address"
+                    label="Địa chỉ"
                     fullWidth
                     autoComplete="given-name"
                     multiline
@@ -89,7 +89,7 @@ const DeliveryAddressForm = () => {
                     required
                     id="city"
                     name="city"
-                    label="City"
+                    label="Thành phố"
                     fullWidth
                     autoComplete="given-name"
                   ></TextField>
@@ -122,7 +122,7 @@ const DeliveryAddressForm = () => {
                     required
                     id="phoneNumber"
                     name="phoneNumber"
-                    label="Phone Number"
+                    label="Số điện thoại"
                     fullWidth
                     autoComplete="given-name"
                   ></TextField>
@@ -135,7 +135,7 @@ const DeliveryAddressForm = () => {
                     variant="contained"
                     type="submit"
                   >
-                    Delivery Here
+                    Thanh toán ngay
                   </Button>
                 </Grid>
               </Grid>

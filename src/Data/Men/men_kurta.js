@@ -1,5 +1,6 @@
 export const mens_kurta=[
     {
+        "id":1,
         "imageUrl": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/c7ee8117-5e90-49cb-8207-f722a838f2eb/air-force-1-07-lv8-shoes-Smph4G.png",
         "branch": "Men's Shoes",
         "title": "Nike Air Force 1 '07 LV8",
@@ -29,6 +30,7 @@ export const mens_kurta=[
           "description":"Comfortable, durable and timeless—it's number 1 for a reason. The classic '80s construction pairs with neutral tones for style that tracks whether you're on court or on the go.."
     },
     {
+      "id":2,
         "imageUrl": "https://static.nike.com/a/images/t_PDP_864_v1,f_auto,q_auto:eco/u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/89b9c5f5-9049-422d-aa76-19ea5323ef58/air-jordan-1-mid-shoes-7cdjgS.png",
         "branch": "Men's shoes",
         "title": "Air Jordan 1 Mid",
@@ -57,6 +59,7 @@ export const mens_kurta=[
           "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
     },
     {
+      "id":3,
         "imageUrl": "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/e3cc2305-65bb-4824-b4bd-9474386f6656/p-6000-shoes-5qgkXp.png",
         "branch": "Men's shoes",
         "title": "Nike P-6000",
@@ -66,15 +69,15 @@ export const mens_kurta=[
         "discountPersent": 73,
         "size": [
             {
-              "name": "S",
+              "name": "39",
               "quantity": 20
             },
             {
-              "name": "M",
+              "name": "40",
               "quantity": 30
             },
             {
-              "name": "L",
+              "name": "41",
               "quantity": 50
             }
           ],
@@ -85,6 +88,7 @@ export const mens_kurta=[
           "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
     },
     {
+      "id":4,
         "imageUrl": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/e5b1fb1f-c9f1-420e-8a9b-efc4dbadd44b/air-jordan-1-low-se-shoes-L9LvW5.png",
         "branch": "Men's shoes",
         "title": "Air Jordan 1 Low SE",
@@ -94,15 +98,15 @@ export const mens_kurta=[
         "discountPersent": 76,
         "size": [
             {
-              "name": "S",
+              "name": "39",
               "quantity": 20
             },
             {
-              "name": "M",
+              "name": "40",
               "quantity": 30
             },
             {
-              "name": "L",
+              "name": "41",
               "quantity": 50
             }
           ],
@@ -113,6 +117,7 @@ export const mens_kurta=[
           "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
     },
     {
+      "id":5,
         "imageUrl": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/4ab4924f-43d5-47f5-925e-92dd480a507e/air-max-excee-shoes-B6SLM0.png",
         "branch": "Men's shoes",
         "title": "Nike Air Max Excee",
@@ -122,15 +127,15 @@ export const mens_kurta=[
         "discountPersent": 50,
         "size": [
             {
-              "name": "S",
+              "name": "39",
               "quantity": 20
             },
             {
-              "name": "M",
+              "name": "40",
               "quantity": 30
             },
             {
-              "name": "L",
+              "name": "41",
               "quantity": 50
             }
           ],
@@ -150,15 +155,15 @@ export const mens_kurta=[
         "discountPersent": 66,
         "size": [
             {
-              "name": "S",
+              "name": "39",
               "quantity": 20
             },
             {
-              "name": "M",
+              "name": "40",
               "quantity": 30
             },
             {
-              "name": "L",
+              "name": "41",
               "quantity": 50
             }
           ],
@@ -178,15 +183,15 @@ export const mens_kurta=[
         "discountPersent": 72,
         "size": [
             {
-              "name": "S",
+              "name": "39",
               "quantity": 20
             },
             {
-              "name": "M",
+              "name": "40",
               "quantity": 30
             },
             {
-              "name": "L",
+              "name": "41",
               "quantity": 50
             }
           ],
@@ -206,15 +211,15 @@ export const mens_kurta=[
         "discountPersent": 27,
         "size": [
             {
-              "name": "S",
+              "name": "39",
               "quantity": 20
             },
             {
-              "name": "M",
+              "name": "40",
               "quantity": 30
             },
             {
-              "name": "L",
+              "name": "41",
               "quantity": 50
             }
           ],
@@ -234,15 +239,15 @@ export const mens_kurta=[
         "discountPersent": 68,
         "size": [
             {
-              "name": "S",
+              "name": "39",
               "quantity": 20
             },
             {
-              "name": "M",
+              "name": "40",
               "quantity": 30
             },
             {
-              "name": "L",
+              "name": "41",
               "quantity": 50
             }
           ],

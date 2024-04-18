@@ -32,13 +32,13 @@ const CartItem = ({ item }) => {
         </div>
         <div className="ml-5">
           <p className="font-semibold">{item.product.title}</p>
-          <p className="opacity-70">Size: {item.size}</p>
-          <p className="opacity-70">Color: {item.product.color}</p>
-          <p className="opacity-70">Seller: Le Tuan Hung</p>
+          <p className="opacity-70">Kích thước: {item.size}</p>
+          <p className="opacity-70">Màu sắc: {item.product.color}</p>
+          <p className="opacity-70">Người bán: Le Tuan Hung</p>
           <div className="flex items-center space-x-5 mt-5">
-            <p className="font-semibold">${item.product.price}</p>
+            <p className="font-semibold">{item.product.price},000</p>
             <p className="opacity-50 line-through">
-              ${item.product.discountedPrice}
+              ${item.product.discountedPrice},000
             </p>
             <p className="text-green-600 font-semibold">
               {item.product.discountedPercent}% off
@@ -67,7 +67,7 @@ const CartItem = ({ item }) => {
             onClick={handleRemoveCartItem}
             sx={{ color: "RGB(145 83 253)" }}
           >
-            Remove
+            Xóa
           </Button>
         </div>
       </div>

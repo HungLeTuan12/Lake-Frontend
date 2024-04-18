@@ -20,9 +20,10 @@ const HomeSectionCarousel = ({ data, sectionName }) => {
   // console.log(syncActiveIndex)
   return (
     <div className="border">
-      <h2 className="text-2xl font-extrabold text-gray-800 pl-5 pt-5">
+      <h2 className="text-2xl text-center font-extrabold text-gray-800 pl-5 pt-5">
         {sectionName}
       </h2>
+
       <div className="relative p-5">
         <AliceCarousel
           items={items}
